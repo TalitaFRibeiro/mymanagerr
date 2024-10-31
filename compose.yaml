@@ -1,7 +1,7 @@
 
 services:
   postgres:
-    container_name: my-managerddd
+    container_name: my-manager-banco
     image: 'postgres:latest'
     environment:
       POSTGRES_DB: product
@@ -13,26 +13,10 @@ services:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  pgadmin:
-    container_name: my-pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: talita@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_LISTEN_PORT: 5050  # Porta pgAdmin correta
-      PGADMIN_CONFIG_SERVER_MODE: "False"
-      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
-    ports:
-      - '5050:5050'  # Porta de acesso ao pgAdmin
-    restart: unless-stopped
 
-      
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-      - ./docker_pgadmin_servers.json:/pgadmin4/servers.json
     
   
  
 volumes:
   postgres-data:
-  pgadmin-data:
+

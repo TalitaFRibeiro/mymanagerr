@@ -1,0 +1,6 @@
+com/example/mymanagerr/MymanagerrApplication.class
+com/example/mymanagerr/product/ProductConfig.class
+com/example/mymanagerr/product/Product.class
+com/example/mymanagerr/product/ProductService.class
+com/example/mymanagerr/product/ProductRepository.class
+com/example/mymanagerr/product/ProductController.class

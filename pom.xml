@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-maven-plugin</artifactId>
-			<version>4.17.0</version>
+			<version>4.29.2</version>
 			<type>maven-plugin</type>
 		</dependency>
 
@@ -71,7 +71,12 @@
 		<dependency>
     		<groupId>org.liquibase</groupId>
     		<artifactId>liquibase-core</artifactId>
-    		<version>4.12.0</version>
+    		<version>4.3.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+
 		</dependency>
 
 		<dependency>
@@ -117,14 +122,36 @@
 			<version>1.18.34</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-cdi</artifactId>
+			<version>4.29.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>2.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--
 			<plugin>  
 					<groupId>org.apache.maven.plugins</groupId>  
 					<artifactId>maven-surefire-plugin</artifactId>  
@@ -140,16 +167,16 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.17.0</version>
 				<configuration>
-					<!--<propertyFile>src/main/resources/liquibase.properties</propertyFile>-->
-					<changeLogFile>${project.basedir}/src/main/resources/liquibase/master.yaml</changeLogFile>
+					&lt;!&ndash;<propertyFile>src/main/resources/liquibase.properties</propertyFile>&ndash;&gt;
+					<changeLogFile>${project.basedir}/src/main/resources/liquibase/db.changelog-master.xml</changeLogFile>
 					<diffChangeLogFile>${project.basedir}/src/main/resources/liquibase/changelog/${maven.build.timestamp}_changelog.yaml</diffChangeLogFile>
 					<outputChangeLogFile>${project.basedir}/src/main/resources/liquibase/changelog/${maven.build.timestamp}_changelog.yaml</outputChangeLogFile>
 					<driver>org.postgresql.Driver</driver>
-					<url>jdbc:postgresql://localhost:5432/liquibase-demo</url>
+					<url>jdbc:postgresql://localhost:5432/product</url>
 					<defaultSchemaName></defaultSchemaName>
 					<username>postgres</username>
-					<password>postgres</password>
-					<referenceUrl>hibernate:spring:com.example.mymanagerr.product?dialect=hibernate:spring:io.platform.*.domain?dialect=org.hibernate.dialect.PostgreSQL95Dialect</referenceUrl>
+					<password>admin</password>
+					<referenceUrl>hibernate:spring:com.example.mymanagerr.product?dialect=org.hibernate.dialect.PostgreSQLDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
 					<verbose>true</verbose>
 					<logging>debug</logging>
 				</configuration>
@@ -165,16 +192,32 @@
 						<version>2.7.10</version>
 					</dependency>
 				</dependencies>
+			</plugin>-->
+
+			<!--<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
+			</plugin>-->
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.29.2</version>
+
+				<configuration>
+					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+				</configuration>
+
 			</plugin>
 
-
-			<plugin>
+			<!--<plugin>
 					<groupId>org.liquibase</groupId>
 					<artifactId>liquibase-maven-plugin</artifactId>
 					<version>4.27.0</version>
-					<configuration>
+					<configuration>&ndash;&gt;
 						
-						<changeLogFile>/db/changelog/db.changelog-master.yaml</changeLogFile>
+						<changeLogFile>/db/changelog/db.changelog-1.yaml</changeLogFile>
 						<url>jdbc:postgresql://localhost:5432/product</url>
 						<username>postgres</username>
 						<password>admin</password>
@@ -195,7 +238,7 @@
 							<version>3.2.4</version>
 						</dependency>
 					</dependencies>
-			</plugin>
+			</plugin>-->
 
 		</plugins>
 	</build>

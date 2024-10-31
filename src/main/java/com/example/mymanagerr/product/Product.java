@@ -9,10 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import lombok.Data;
 
 
 @Entity
 @Table(name = "products")
+@Data
 public class Product {
     @Id
     @SequenceGenerator(
@@ -24,63 +27,67 @@ public class Product {
         strategy = GenerationType.SEQUENCE,
         generator = "product_sequence"
     )
-    private Long id_product;
-    private String product_name;
-    private LocalDate product_check_in;
-    private LocalDate product_check_out;
+    @Column(name = "id_product")
+    private Long idProduct;
+    @Column(name = "product_name", nullable = false)
+    private String productName;
+    @Column(name = "product_check_in", nullable = false)
+    private LocalDate productCheckIn;
+    @Column(name = "product_check_out")
+    private LocalDate productCheckOut;
     
     public Product() {
     }
     
-    public Product(Long id_produto, String product_name, LocalDate product_check_in, LocalDate product_check_out) {
-        this.id_product = id_produto;
-        this.product_name = product_name;
-        this.product_check_in = product_check_in;
-        this.product_check_out = product_check_out;
+    public Product(Long idProduct, String productName, LocalDate productCheckIn, LocalDate productCheckOut) {
+        this.idProduct = idProduct;
+        this.productName = productName;
+        this.productCheckIn = productCheckIn;
+        this.productCheckOut = productCheckOut;
     }
 
-    public Product(String product_name, LocalDate product_check_in, LocalDate product_check_out) {
-        this.product_name = product_name;
-        this.product_check_in = product_check_in;
-        this.product_check_out = product_check_out;
+    public Product(String product_name, LocalDate productCheckIn, LocalDate productCheckOut) {
+        this.productName = product_name;
+        this.productCheckIn = productCheckIn;
+        this.productCheckOut = productCheckOut;
     }
 
-    public Long getId_produto() {
-        return id_product;
+    public Long getIdProduct() {
+        return idProduct;
     }
 
-    public void setId_produto(Long id_produto) {
-        this.id_product = id_produto;
+    public void setIdProduct(Long idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public LocalDate getProduct_check_in() {
-        return product_check_in;
+    public LocalDate getProductCheckIn() {
+        return productCheckIn;
     }
 
-    public void setProduct_check_in(LocalDate product_check_in) {
-        this.product_check_in = product_check_in;
+    public void setProductCheckIn(LocalDate productCheckIn) {
+        this.productCheckIn = productCheckIn;
     }
 
-    public LocalDate getProduct_check_out() {
-        return product_check_out;
+    public LocalDate getProductCheckOut() {
+        return productCheckOut;
     }
 
-    public void setProduct_check_out(LocalDate product_check_out) {
-        this.product_check_out = product_check_out;
+    public void setProductCheckOut(LocalDate productCheckOut) {
+        this.productCheckOut = productCheckOut;
     }
 
     @Override
     public String toString() {
-        return "Product [id_produto=" + id_product + ", product_name=" + product_name + ", product_check_in="
-                + product_check_in + ", product_check_out=" + product_check_out + "]";
+        return "Product [id_product=" + idProduct + ", product_name=" + productName + ", product_check_in="
+                + productCheckIn + ", productCheckOut=" + productCheckOut + "]";
     }
 
     

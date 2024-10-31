@@ -1,0 +1,10 @@
+- changeSet:
+    id:  4
+    author:  your.name
+    changes:
+      - addColumn:
+          tableName:  person
+          columns:
+            - column:
+                name:  nickname
+                type:  varchar(30)
